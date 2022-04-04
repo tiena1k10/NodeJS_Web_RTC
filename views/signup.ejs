@@ -1,0 +1,65 @@
+<%- include('partials/header'); -%>
+
+<form method="post" action="/signup">
+    <h2>Sign up</h2>
+    <div class="general error"></div>
+    <label for="fullname">Fullname</label>
+    <input type="text" name="fullname" required>
+    <div class="fullname error"></div>
+    <label for="email">Email</label>
+    <input type="text" name="email" required>
+    <div class="email error"></div>
+    <label for="password">Password</label>
+    <input type="password" name="password" required>
+    <div class="password error"></div>
+    <label for="re-password">re-Password</label>
+    <input type="password" name="re_password" required>
+    <div class="re-password error"></div>
+    <button type="submit">Sign up</button>
+</form>
+
+<%- include('partials/footer'); -%>
+<script>
+    const form = document.querySelector("form");
+    const err = document.querySelector(".re-password");
+    const emailErr = document.querySelector(".email");
+    const fullnameErr = document.querySelector(".fullname");
+    const passwordErr = document.querySelector(".password");
+    const generalErr = document.querySelector(".general");
+
+    form.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        emailErr.textContent ="";
+        fullnameErr.textContent="";
+        passwordErr.textContent="";
+        generalErr.textContent="";
+        err.textContent="";
+        const fullname =form.fullname.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const re_password = form.re_password.value;
+        if(password!==re_password){
+            console.log(err);
+            err.textContent="Password is not match !";
+            return ;
+        }
+        try{
+            const res = await fetch("/signup",{
+                method:"POST",
+                body: JSON.stringify({fullname,email,password}),
+                headers: {"Content-Type":"application/json"}
+            });
+            const data = await res.json();
+            if(data.errors){
+                emailErr.textContent = data.errors.email;
+                passwordErr.textContent = data.errors.password;
+                fullnameErr.textContent = data.errors.fullname;
+            }
+            if(data.redirect){
+                location.assign("/login");
+            }
+        }catch(e){
+            generalErr.textContent="Error! Please try again!!!";
+       }
+    })
+</script>
