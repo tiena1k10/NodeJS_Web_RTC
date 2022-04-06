@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000;
 
 
 // database connection
-const dbURI = 'mongodb://localhost:27017/WebRTC';
+const dbURI = 'mongodb+srv://tiena1k10:Tiendz123@chatapp.do7ro.mongodb.net/CallVideoApp?retryWrites=true&w=majority'
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => {
     var server = app.listen(PORT)
