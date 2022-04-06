@@ -1,0 +1,21 @@
+.list_online{
+    background-color: red;
+    width: 20%;
+}
+.container{
+    display: flex;
+    width: 80%;
+    height: 600px;
+}
+.call_video_box{
+    width: 80%;
+    background: blue;
+}
+.call_video_box{
+    position: relative;
+}
+.local_Video_Ctn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

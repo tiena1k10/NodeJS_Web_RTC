@@ -26,6 +26,7 @@ module.exports.checkUser = (req,res,next)=>{
                 let user = await User.findById(decodedToken.id);
                 res.locals.user = {
                     name: user.fullname,
+                    email: user.email
                 }
                 next();
             }

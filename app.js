@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 var bodyParser = require('body-parser')
-
+const socketio = require("socket.io");
 
 
 
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 // view engine
 app.set('view engine', 'ejs');
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 
 
@@ -30,13 +30,15 @@ const PORT = 3000 || process.env.PORT;
 
 
 // database connection
-const dbURI = 'mongodb://localhost:27017/ChatApp';
+const dbURI = 'mongodb://localhost:27017/WebRTC';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => {
-    app.listen(PORT)
-    console.log("app is running on http://localhost:3000/")
-    })
-  .catch((err) => console.log(err));
+    var server = app.listen(PORT)
+    var io = socketio(server)
+    const socketioControl = require("./controllers/socketio");
+    socketioControl(io);
+    console.log("Express server listening on port %d in %s mode", PORT, app.settings.env); 
+  }).catch((err) => console.log(err));
 
 // routes
 

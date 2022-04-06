@@ -1,0 +1,24 @@
+<%- include('partials/header'); -%>
+<!-- -///// -->
+<link rel="stylesheet" href="/sotai.css">
+<div class="container">
+  <div class="list_online">
+      <ul class="list_online_ul">
+        <li id="my_peer_id"></li>
+    </ul>
+  </div>
+  <div class="call_video_box">
+      <div class="friend_Video_Ctn"> 
+          <video id = "friend_Video"></video>
+      </div>
+      <div class="local_Video_Ctn">
+        <video width="200px" id = "local_Video"></video>
+      </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="/bundle.js"></script>
+
+<%- include('partials/footer'); -%>

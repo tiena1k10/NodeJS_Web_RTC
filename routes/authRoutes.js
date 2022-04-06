@@ -1,11 +1,11 @@
 const {Router} = require("express");
 const router = Router();
 const authController = require("../controllers/authController");
-const chatRoomCtl = require("../controllers/chatRoomController");
+const chatRoomCtl = require("../controllers/callRoomController");
 const requireAuth = require("../midlewares/authMidleware");
 router.get("*",requireAuth.checkUser);
 router.get('/', (req, res) => res.render('home'));
-router.get('/chatroom', requireAuth.requireAuth, chatRoomCtl.chatroom_get);
+router.get('/callroom', requireAuth.requireAuth, chatRoomCtl.callroom_get);
 router.get("/signup",requireAuth.requireLoggedout, authController.singup_get);
 router.post("/signup",authController.singup_post);
 router.get("/login",requireAuth.requireLoggedout,authController.login_get);
