@@ -16,7 +16,7 @@ function openStream(audio){
 
   var peer = new Peer();
   
-  const socket = io("http://localhost:3000/");
+  const socket = io("/");
   const email = document.getElementById("email_header").textContent
   const fullname = document.getElementById("fullname_header").textContent
   
