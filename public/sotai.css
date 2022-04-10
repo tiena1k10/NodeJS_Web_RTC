@@ -1,6 +1,7 @@
 .list_online{
-    background-color: red;
+    /* background-color: red; */
     width: 20%;
+    padding: 20px;
 }
 .container{
     display: flex;
@@ -9,13 +10,16 @@
 }
 .call_video_box{
     width: 80%;
-    background: blue;
+    padding: 20px;
 }
 .call_video_box{
     position: relative;
 }
 .local_Video_Ctn{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 40px;
+    right: 20px;
+}
+.friend_Video_Ctn{
+    
 }
